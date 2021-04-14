@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (!auth())
+        return redirect('/login');
+    return redirect('/dashboard');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
+
+Route::post('url', [\App\Http\Controllers\UrlController::class, 'store'])->middleware('auth');
+
+Route::get('{url:code}', [\App\Http\Controllers\UrlController::class, 'show']);
+
+

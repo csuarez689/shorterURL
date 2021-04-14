@@ -1,3 +1,3 @@
 ## About
 
-Custom URL shortener made in Laravel & VueJS
+Custom URL shortener made in Laravel & Tailwind
